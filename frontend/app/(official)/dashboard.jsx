@@ -1,4 +1,5 @@
-import { ScrollView, View, Text, Pressable, StyleSheet } from 'react-native';
+import { useState } from 'react';
+import { ScrollView, View, Text, Pressable, Modal, StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
@@ -17,6 +18,19 @@ const URGENT = {
   detail: 'Toyota Corolla · Johannesburg · 10 minutes ago',
 };
 
+// Screens listed in the menu: [label, route inside (official)]
+const MENU = [
+  ['Check VIN', 'check-vin'],
+  ['Report Verification', 'report-verification'],
+  ['Sightings', 'sightings'],
+  ['Recovery Map', 'recovery-intelligence'],
+  ['Vehicle Status', 'vehicle-status'],
+  ['Alerts', 'alerts'],
+  ['Report Protection', 'report-protection'],
+  ['Security & Privacy', 'security'],
+  ['Profile', 'profile'],
+];
+
 // ---- Colors (taken from the prototype) ----
 const C = {
   bg: '#0B0B0B',
@@ -31,6 +45,7 @@ const C = {
 
 export default function OfficialDashboard() {
   const router = useRouter();
+  const [menuOpen, setMenuOpen] = useState(false);
   const [fontsLoaded] = useFonts({
     BebasNeue_400Regular,
     Inter_400Regular,
@@ -48,7 +63,9 @@ export default function OfficialDashboard() {
         {/* Top bar */}
         <View style={styles.topBar}>
           <View style={styles.brandRow}>
-            <Ionicons name="menu" size={22} color={C.red} />
+            <Pressable onPress={() => setMenuOpen(true)} hitSlop={12}>
+              <Ionicons name="menu" size={26} color={C.red} />
+            </Pressable>
             <Text style={styles.brandText}>VINWatch Official</Text>
           </View>
           <View style={styles.badge}>
@@ -161,6 +178,35 @@ export default function OfficialDashboard() {
           </View>
         </Pressable>
       </ScrollView>
+
+      {/* Menu */}
+      <Modal
+        visible={menuOpen}
+        transparent
+        animationType="fade"
+        onRequestClose={() => setMenuOpen(false)}
+      >
+        <Pressable style={styles.backdrop} onPress={() => setMenuOpen(false)}>
+          <View style={styles.menu}>
+            {MENU.map(([label, path], i) => (
+              <Pressable
+                key={path}
+                style={[
+                  styles.menuItem,
+                  i < MENU.length - 1 && styles.menuDivider,
+                ]}
+                onPress={() => {
+                  setMenuOpen(false);
+                  go(path);
+                }}
+              >
+                <Text style={styles.menuText}>{label}</Text>
+                <Ionicons name="chevron-forward" size={16} color={C.muted} />
+              </Pressable>
+            ))}
+          </View>
+        </Pressable>
+      </Modal>
     </SafeAreaView>
   );
 }
@@ -445,5 +491,32 @@ const styles = StyleSheet.create({
     color: C.muted,
     marginTop: 2,
   },
-});
 
+  // Menu
+  backdrop: {
+    flex: 1,
+    backgroundColor: 'rgba(0,0,0,0.65)',
+    paddingTop: 90,
+    paddingHorizontal: 16,
+  },
+  menu: {
+    backgroundColor: C.card,
+    borderWidth: 1,
+    borderColor: '#242424',
+    borderRadius: 18,
+    overflow: 'hidden',
+  },
+  menuItem: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    paddingVertical: 16,
+    paddingHorizontal: 20,
+  },
+  menuDivider: { borderBottomWidth: 1, borderBottomColor: '#242424' },
+  menuText: {
+    fontFamily: 'Inter_600SemiBold',
+    fontSize: 15,
+    color: C.text,
+  },
+});
