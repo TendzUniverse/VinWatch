@@ -1,7 +1,7 @@
 import { ScrollView, View, Text, Pressable, StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
-import { Ionicons } from '@expo/vector-icons';
+import Icon from '../../components/common/Icon';
 import { useFonts, BebasNeue_400Regular } from '@expo-google-fonts/bebas-neue';
 import { Inter_400Regular, Inter_600SemiBold } from '@expo-google-fonts/inter';
 
@@ -25,7 +25,7 @@ const EVENTS = [
   {
     time: '10:00',
     tag: 'INCIDENT REPORTED',
-    emoji: '🚨',
+    icon: 'alert',
     color: C.red,
     place: 'Sandton',
     street: 'Rivonia Road & West St',
@@ -34,7 +34,7 @@ const EVENTS = [
   {
     time: '10:15',
     tag: 'POSSIBLE SIGHTING',
-    emoji: '👀',
+    icon: 'eye',
     color: C.orange,
     place: 'Rosebank',
     street: 'Oxford Road',
@@ -43,7 +43,7 @@ const EVENTS = [
   {
     time: '10:42',
     tag: 'COMMUNITY SIGHTING',
-    emoji: '👀',
+    icon: 'eye',
     color: C.yellow,
     place: 'Parktown',
     street: 'Jan Smuts Avenue',
@@ -52,7 +52,7 @@ const EVENTS = [
   {
     time: '11:05',
     tag: 'RECENT VERIFIED SIGHTING',
-    emoji: '🛡️',
+    icon: 'shield',
     color: C.brightRed,
     place: 'Auckland Park',
     street: 'Empire Road',
@@ -76,7 +76,7 @@ export default function Sightings() {
       <ScrollView contentContainerStyle={styles.scroll}>
         {/* Back */}
         <Pressable style={styles.back} onPress={() => router.back()}>
-          <Ionicons name="chevron-back" size={18} color={C.muted} />
+          <Icon name="chevronLeft" size={18} color={C.muted} />
           <Text style={styles.backText}>Back</Text>
         </Pressable>
 
@@ -144,16 +144,14 @@ export default function Sightings() {
                     },
                   ]}
                 >
-                  <Text style={styles.tagEmoji}>{e.emoji}</Text>
+                  <Icon name={e.icon} size={12} color={e.color} />
                   <Text style={[styles.tagText, { color: e.color }]}>{e.tag}</Text>
                 </View>
 
                 <View style={styles.placeRow}>
-                  <Ionicons
-                    name="location-sharp"
+                  <Icon name="pin"
                     size={14}
-                    color={e.latest ? C.red : C.muted}
-                  />
+                    color={e.latest ? C.red : C.muted} />
                   <Text style={[styles.place, e.latest && { color: C.red }]}>
                     {e.place}
                   </Text>
@@ -398,4 +396,3 @@ const styles = StyleSheet.create({
     color: C.text,
   },
 });
-

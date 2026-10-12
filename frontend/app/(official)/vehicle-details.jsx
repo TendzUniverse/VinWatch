@@ -1,7 +1,7 @@
 import { ScrollView, View, Text, Pressable, Alert, StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter, useLocalSearchParams } from 'expo-router';
-import { Ionicons } from '@expo/vector-icons';
+import Icon from '../../components/common/Icon';
 import { useFonts, BebasNeue_400Regular } from '@expo-google-fonts/bebas-neue';
 import { Inter_400Regular, Inter_600SemiBold } from '@expo-google-fonts/inter';
 
@@ -30,7 +30,7 @@ const VEHICLE = {
   lastChecked: 'just now',
   alerts: [], // e.g. [{ title: 'Reported stolen', when: '2 hours ago' }]
   reports: [
-    { emoji: '👀', title: 'Community Sighting', meta: 'Submitted 3 days ago · Verified' },
+    { icon: 'eye', title: 'Community Sighting', meta: 'Submitted 3 days ago · Verified' },
   ],
 };
 
@@ -81,7 +81,7 @@ export default function VehicleDetails() {
         {/* Header */}
         <View style={styles.header}>
           <Pressable style={styles.back} onPress={() => router.back()}>
-            <Ionicons name="chevron-back" size={18} color={C.muted} />
+            <Icon name="chevronLeft" size={18} color={C.muted} />
             <Text style={styles.backText}>Back</Text>
           </Pressable>
           <View style={styles.titleRow}>
@@ -170,7 +170,7 @@ export default function VehicleDetails() {
                 ]}
               >
                 <View style={styles.listIcon}>
-                  <Text style={styles.listEmoji}>{r.emoji}</Text>
+                  <Icon name={r.icon} size={22} color={C.red} />
                 </View>
                 <View style={styles.listText}>
                   <Text style={styles.listTitle}>{r.title}</Text>
@@ -411,4 +411,3 @@ const styles = StyleSheet.create({
     color: C.text,
   },
 });
-

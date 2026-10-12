@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { ScrollView, View, Text, Pressable, Alert, StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
-import { Ionicons } from '@expo/vector-icons';
+import Icon from '../../components/common/Icon';
 import { useFonts, BebasNeue_400Regular } from '@expo-google-fonts/bebas-neue';
 import { Inter_400Regular, Inter_600SemiBold } from '@expo-google-fonts/inter';
 
@@ -89,7 +89,7 @@ export default function ReportVerification() {
       <ScrollView contentContainerStyle={styles.scroll}>
         {/* Back */}
         <Pressable style={styles.back} onPress={() => router.back()}>
-          <Ionicons name="chevron-back" size={18} color={C.muted} />
+          <Icon name="chevronLeft" size={18} color={C.muted} />
           <Text style={styles.backText}>Back</Text>
         </Pressable>
 
@@ -143,7 +143,7 @@ export default function ReportVerification() {
             ]}
           >
             <View style={styles.actionTop}>
-              <Ionicons name="checkmark" size={24} color={C.green} />
+              <Icon name="check" size={24} color={C.green} />
               <Text style={[styles.actionTitle, { color: C.green }]}>VERIFY</Text>
             </View>
             <Text style={[styles.actionSub, { color: C.green }]}>
@@ -161,7 +161,7 @@ export default function ReportVerification() {
             ]}
           >
             <View style={styles.actionTop}>
-              <Ionicons name="close" size={24} color={C.red} />
+              <Icon name="x" size={24} color={C.red} />
               <Text style={[styles.actionTitle, { color: C.red }]}>REJECT</Text>
             </View>
             <Text style={[styles.actionSub, { color: C.red }]}>
@@ -172,7 +172,7 @@ export default function ReportVerification() {
 
         {/* Audit note */}
         <View style={styles.audit}>
-          <Text style={styles.auditIcon}>🛡️</Text>
+          <Icon name="shield" size={20} color="#38BDF8" />
           <Text style={styles.auditText}>
             All verification actions are logged for audit purposes.
           </Text>
@@ -323,4 +323,3 @@ const styles = StyleSheet.create({
     color: C.muted,
   },
 });
-

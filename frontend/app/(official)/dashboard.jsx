@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { ScrollView, View, Text, Pressable, Modal, StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
-import { Ionicons } from '@expo/vector-icons';
+import Icon from '../../components/common/Icon';
 import { useFonts, BebasNeue_400Regular } from '@expo-google-fonts/bebas-neue';
 import { Inter_400Regular, Inter_600SemiBold } from '@expo-google-fonts/inter';
 
@@ -64,12 +64,12 @@ export default function OfficialDashboard() {
         <View style={styles.topBar}>
           <View style={styles.brandRow}>
             <Pressable onPress={() => setMenuOpen(true)} hitSlop={12}>
-              <Ionicons name="menu" size={26} color={C.red} />
+              <Icon name="menu" size={26} color={C.red} />
             </Pressable>
             <Text style={styles.brandText}>VINWatch Official</Text>
           </View>
           <View style={styles.badge}>
-            <Ionicons name="shield-checkmark-outline" size={14} color={C.red} />
+            <Icon name="shieldCheck" size={14} color={C.red} />
             <Text style={styles.badgeText}>VERIFIED OFFICIAL</Text>
           </View>
         </View>
@@ -86,21 +86,21 @@ export default function OfficialDashboard() {
         {/* Stats */}
         <View style={styles.statsRow}>
           <StatCard
-            emoji="📋"
+            icon="clipboard"
             value={STATS.reportsAwaiting}
             label={'Reports Awaiting\nReview'}
             color={C.yellow}
             onPress={() => go('report-verification')}
           />
           <StatCard
-            emoji="👀"
+            icon="eye"
             value={STATS.newSightings}
             label="New Sightings"
             color={C.blue}
             onPress={() => go('sightings')}
           />
           <StatCard
-            emoji="🚨"
+            icon="alert"
             value={STATS.activeVehicles}
             label="Active Vehicles"
             color={C.red}
@@ -116,7 +116,7 @@ export default function OfficialDashboard() {
           </View>
           <View style={styles.urgentBody}>
             <View style={styles.urgentIcon}>
-              <Text style={styles.urgentEmoji}>🚨</Text>
+              <Icon name="alert" size={22} color={C.red} />
             </View>
             <View style={styles.urgentText}>
               <Text style={styles.urgentTitle}>{URGENT.title}</Text>
@@ -135,28 +135,28 @@ export default function OfficialDashboard() {
         <Text style={styles.sectionLabel}>OFFICIAL ACTIONS</Text>
         <View style={styles.grid}>
           <ActionCard
-            emoji="✅"
+            icon="checkCircle"
             title="VERIFY REPORTS"
             subtitle={`${STATS.reportsAwaiting} awaiting your review`}
             color={C.red}
             onPress={() => go('report-verification')}
           />
           <ActionCard
-            emoji="👀"
+            icon="eye"
             title="REVIEW SIGHTINGS"
             subtitle={`${STATS.newSightings} new community sightings`}
             color={C.blue}
             onPress={() => go('sightings')}
           />
           <ActionCard
-            emoji="🚗"
+            icon="car"
             title="UPDATE VEHICLE STATUS"
             subtitle="Change vehicle report status"
             color={C.yellow}
             onPress={() => go('vehicle-status')}
           />
           <ActionCard
-            emoji="🗺️"
+            icon="map"
             title="RECOVERY ACTIVITY"
             subtitle="View intelligence map"
             color={C.green}
@@ -170,7 +170,7 @@ export default function OfficialDashboard() {
           onPress={() => go('report-protection')}
         >
           <View style={styles.protectionIcon}>
-            <Text style={styles.protectionEmoji}>🛡️</Text>
+            <Icon name="shield" size={20} color={C.blue} />
           </View>
           <View>
             <Text style={styles.protectionTitle}>Report Protection System</Text>
@@ -201,7 +201,7 @@ export default function OfficialDashboard() {
                 }}
               >
                 <Text style={styles.menuText}>{label}</Text>
-                <Ionicons name="chevron-forward" size={16} color={C.muted} />
+                <Icon name="chevronRight" size={16} color={C.muted} />
               </Pressable>
             ))}
           </View>
@@ -211,13 +211,13 @@ export default function OfficialDashboard() {
   );
 }
 
-function StatCard({ emoji, value, label, color, onPress }) {
+function StatCard({ icon, value, label, color, onPress }) {
   return (
     <Pressable
       onPress={onPress}
       style={[styles.statCard, { borderColor: color + '55' }]}
     >
-      <Text style={styles.statEmoji}>{emoji}</Text>
+      <Icon name={icon} size={26} color={color} style={{ marginBottom: 6 }} />
       <Text
         style={[
           styles.statValue,
@@ -231,7 +231,7 @@ function StatCard({ emoji, value, label, color, onPress }) {
   );
 }
 
-function ActionCard({ emoji, title, subtitle, color, onPress }) {
+function ActionCard({ icon, title, subtitle, color, onPress }) {
   return (
     <Pressable
       onPress={onPress}
@@ -243,7 +243,7 @@ function ActionCard({ emoji, title, subtitle, color, onPress }) {
           { backgroundColor: color + '22', borderColor: color + '44' },
         ]}
       >
-        <Text style={styles.actionEmoji}>{emoji}</Text>
+        <Icon name={icon} size={22} color={color} />
       </View>
       <Text style={[styles.actionTitle, { color }]}>{title}</Text>
       <Text style={styles.actionSub}>{subtitle}</Text>

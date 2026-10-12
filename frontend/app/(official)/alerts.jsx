@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { ScrollView, View, Text, Pressable, StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
-import { Ionicons } from '@expo/vector-icons';
+import Icon from '../../components/common/Icon';
 import { useFonts, BebasNeue_400Regular } from '@expo-google-fonts/bebas-neue';
 import { Inter_400Regular, Inter_600SemiBold } from '@expo-google-fonts/inter';
 
@@ -68,14 +68,14 @@ export default function Alerts() {
               style={styles.settingsBtn}
               onPress={() => router.push('/(official)/alert-settings')}
             >
-              <Ionicons name="settings-outline" size={14} color={C.muted} />
+              <Icon name="settings" size={14} color={C.muted} />
               <Text style={styles.settingsText}>SETTINGS</Text>
             </Pressable>
           </View>
 
           {/* Alert area */}
           <View style={styles.area}>
-            <Text style={styles.pin}>📍</Text>
+            <Icon name="pin" size={18} color={C.red} />
             <View style={styles.areaText}>
               <Text style={styles.areaLabel}>YOUR ALERT AREA</Text>
               <Text style={styles.areaName}>{AREA.name}</Text>
@@ -297,4 +297,3 @@ const styles = StyleSheet.create({
     paddingVertical: 40,
   },
 });
-

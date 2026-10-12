@@ -1,7 +1,7 @@
 import { ScrollView, View, Text, Pressable, Alert, StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
-import { Ionicons } from '@expo/vector-icons';
+import Icon from '../../components/common/Icon';
 import { useFonts, BebasNeue_400Regular } from '@expo-google-fonts/bebas-neue';
 import { Inter_400Regular, Inter_600SemiBold } from '@expo-google-fonts/inter';
 
@@ -40,17 +40,17 @@ const ACTIVE_VEHICLE = {
 };
 
 const MENU = [
-  { emoji: '🚘', title: 'MY VEHICLES', sub: 'Manage 2 registered vehicles' },
-  { emoji: '🔔', title: 'NOTIFICATION SETTINGS', sub: 'Alerts, radius, preferences' },
+  { icon: 'car', title: 'MY VEHICLES', sub: 'Manage 2 registered vehicles' },
+  { icon: 'bell', title: 'NOTIFICATION SETTINGS', sub: 'Alerts, radius, preferences' },
   {
-    emoji: '🔒',
+    icon: 'lock',
     title: 'PRIVACY & SECURITY',
     sub: 'Control your data & access',
     route: '/(official)/security',
   },
-  { emoji: '⭐', title: 'COMMUNITY CONTRIBUTION', sub: 'Score: 87/100 · Verified' },
-  { emoji: '👤', title: 'ACCOUNT TYPE', sub: 'Normal User · Vehicle Owner' },
-  { emoji: '❓', title: 'HELP & SUPPORT', sub: 'Get help with VINWatch' },
+  { icon: 'star', title: 'COMMUNITY CONTRIBUTION', sub: 'Score: 87/100 · Verified' },
+  { icon: 'user', title: 'ACCOUNT TYPE', sub: 'Normal User · Vehicle Owner' },
+  { icon: 'help', title: 'HELP & SUPPORT', sub: 'Get help with VINWatch' },
 ];
 
 export default function Profile() {
@@ -82,7 +82,7 @@ export default function Profile() {
             <View style={styles.userText}>
               <Text style={styles.name}>{USER.name}</Text>
               <View style={styles.roleRow}>
-                <Ionicons name="shield-checkmark-outline" size={14} color={C.red} />
+                <Icon name="shieldCheck" size={14} color={C.red} />
                 <Text style={styles.role}>{USER.roleLabel}</Text>
               </View>
               <Text style={styles.email}>{USER.email}</Text>
@@ -111,7 +111,7 @@ export default function Profile() {
             </View>
             <View style={styles.activeRow}>
               <View style={styles.iconBox}>
-                <Text style={styles.iconEmoji}>🚘</Text>
+                <Icon name="car" size={24} color={C.red} />
               </View>
               <View style={styles.activeText}>
                 <Text style={styles.vehicleName}>{ACTIVE_VEHICLE.name}</Text>
@@ -130,13 +130,13 @@ export default function Profile() {
           {MENU.map((item) => (
             <Pressable key={item.title} style={styles.menuRow} onPress={() => open(item)}>
               <View style={styles.iconBox}>
-                <Text style={styles.iconEmoji}>{item.emoji}</Text>
+                <Icon name={item.icon} size={24} color={C.red} />
               </View>
               <View style={styles.menuText}>
                 <Text style={styles.menuTitle}>{item.title}</Text>
                 <Text style={styles.menuSub}>{item.sub}</Text>
               </View>
-              <Ionicons name="chevron-forward" size={18} color={C.faint} />
+              <Icon name="chevronRight" size={18} color={C.faint} />
             </Pressable>
           ))}
         </View>
@@ -324,4 +324,3 @@ const styles = StyleSheet.create({
     marginTop: 3,
   },
 });
-

@@ -1,7 +1,7 @@
 import { ScrollView, View, Text, Pressable, StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
-import { Ionicons } from '@expo/vector-icons';
+import Icon from '../../components/common/Icon';
 import { useFonts, BebasNeue_400Regular } from '@expo-google-fonts/bebas-neue';
 import { Inter_400Regular, Inter_600SemiBold } from '@expo-google-fonts/inter';
 
@@ -19,25 +19,25 @@ const C = {
 
 const CONTROLS = [
   {
-    emoji: '🚫',
+    icon: 'ban',
     title: 'REPORT LIMITS',
     color: C.red,
     body: 'Users may only submit a limited number of reports within a set time period to help prevent spam and misuse.',
   },
   {
-    emoji: '🟡',
+    icon: 'clipboardCheck',
     title: 'REPORT REVIEW',
     color: C.yellow,
     body: 'Reports may be held under review before verification. Unverified reports are clearly labelled in the system.',
   },
   {
-    emoji: '📝',
+    icon: 'fileText',
     title: 'AUDIT LOGS',
     color: C.blue,
     body: 'All important actions — including report submissions, verifications, and rejections — are recorded for accountability.',
   },
   {
-    emoji: '🛡️',
+    icon: 'shield',
     title: 'VERIFIED OFFICIALS',
     color: C.green,
     body: 'Only authorised officials with verified accounts can confirm, reject, or escalate vehicle reports in the database.',
@@ -59,13 +59,13 @@ export default function ReportProtection() {
       <ScrollView contentContainerStyle={styles.scroll}>
         {/* Back */}
         <Pressable style={styles.back} onPress={() => router.back()}>
-          <Ionicons name="chevron-back" size={18} color={C.muted} />
+          <Icon name="chevronLeft" size={18} color={C.muted} />
           <Text style={styles.backText}>Back</Text>
         </Pressable>
 
         {/* Title */}
         <View style={styles.titleRow}>
-          <Ionicons name="shield-checkmark-outline" size={34} color={C.red} />
+          <Icon name="shieldCheck" size={34} color={C.red} />
           <Text style={styles.title}>
             REPORT <Text style={styles.titleRed}>PROTECTION</Text>
           </Text>
@@ -91,7 +91,7 @@ export default function ReportProtection() {
                 },
               ]}
             >
-              <Text style={styles.iconEmoji}>{item.emoji}</Text>
+              <Icon name={item.icon} size={24} color={item.color} />
             </View>
             <View style={styles.cardText}>
               <Text style={[styles.cardTitle, { color: item.color }]}>
@@ -104,12 +104,10 @@ export default function ReportProtection() {
 
         {/* Footer note */}
         <View style={styles.note}>
-          <Ionicons
-            name="information-circle-outline"
+          <Icon name="info"
             size={20}
             color={C.blue}
-            style={styles.noteIcon}
-          />
+            style={styles.noteIcon} />
           <Text style={styles.noteText}>
             These controls work together to keep the VINWatch SA database
             accurate and trustworthy for the community and law enforcement.
@@ -240,4 +238,3 @@ const styles = StyleSheet.create({
     color: C.text,
   },
 });
-

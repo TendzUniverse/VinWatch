@@ -1,7 +1,7 @@
 import { ScrollView, View, Text, Pressable, useWindowDimensions, StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
-import { Ionicons } from '@expo/vector-icons';
+import Icon from '../../components/common/Icon';
 import Svg, { Rect, Line, Circle, Polygon } from 'react-native-svg';
 import { useFonts, BebasNeue_400Regular } from '@expo-google-fonts/bebas-neue';
 import { Inter_400Regular, Inter_600SemiBold } from '@expo-google-fonts/inter';
@@ -92,7 +92,7 @@ export default function RecoveryIntelligence() {
         {/* Top row */}
         <View style={styles.topRow}>
           <Pressable style={styles.back} onPress={() => router.back()}>
-            <Ionicons name="chevron-back" size={18} color={C.muted} />
+            <Icon name="chevronLeft" size={18} color={C.muted} />
             <Text style={styles.backText}>Back</Text>
           </Pressable>
           <View style={styles.liveRow}>
@@ -109,7 +109,10 @@ export default function RecoveryIntelligence() {
         <View style={styles.alertCard}>
           <View style={styles.alertDot} />
           <View>
-            <Text style={styles.alertLabel}>🚨  ACTIVE VEHICLE ALERT</Text>
+            <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6, marginBottom: 6 }}>
+              <Icon name="alert" size={12} color={C.red} />
+              <Text style={[styles.alertLabel, { marginBottom: 0 }]}>ACTIVE VEHICLE ALERT</Text>
+            </View>
             <Text style={styles.alertVehicle}>
               {VEHICLE.name} <Text style={styles.alertVin}>· VIN {VEHICLE.vin}</Text>
             </Text>
@@ -273,7 +276,7 @@ export default function RecoveryIntelligence() {
                     {p.name}
                   </Text>
                   {i < pts.length - 1 && (
-                    <Ionicons name="arrow-forward" size={13} color={C.red} />
+                    <Icon name="arrowRight" size={13} color={C.red} />
                   )}
                 </View>
               ))}
@@ -561,4 +564,3 @@ const styles = StyleSheet.create({
     color: C.text,
   },
 });
-

@@ -1,7 +1,7 @@
 import { ScrollView, View, Text, Pressable, StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
-import { Ionicons } from '@expo/vector-icons';
+import Icon from '../../components/common/Icon';
 import { useFonts, BebasNeue_400Regular } from '@expo-google-fonts/bebas-neue';
 import { Inter_400Regular, Inter_600SemiBold } from '@expo-google-fonts/inter';
 
@@ -26,7 +26,7 @@ const MAX_POINTS = 30; // the largest a single factor can contribute (full bar)
 
 const FACTORS = [
   {
-    emoji: '🕐',
+    icon: 'clock',
     title: 'RECENCY',
     points: 30,
     color: C.red,
@@ -34,7 +34,7 @@ const FACTORS = [
     row: 'Recent Activity',
   },
   {
-    emoji: '👥',
+    icon: 'users',
     title: 'SIGHTINGS',
     points: 25,
     color: C.orange,
@@ -42,7 +42,7 @@ const FACTORS = [
     row: 'Verified Sighting',
   },
   {
-    emoji: '🛡️',
+    icon: 'shield',
     title: 'VERIFICATION',
     points: 20,
     color: C.yellow,
@@ -50,7 +50,7 @@ const FACTORS = [
     row: 'Multiple Sightings',
   },
   {
-    emoji: '🧭',
+    icon: 'compass',
     title: 'MOVEMENT',
     points: 12,
     color: C.blue,
@@ -81,7 +81,7 @@ export default function RecoveryDetails() {
       <ScrollView contentContainerStyle={styles.scroll}>
         {/* Back */}
         <Pressable style={styles.back} onPress={() => router.back()}>
-          <Ionicons name="chevron-back" size={18} color={C.muted} />
+          <Icon name="chevronLeft" size={18} color={C.muted} />
           <Text style={styles.backText}>Back</Text>
         </Pressable>
 
@@ -121,7 +121,7 @@ export default function RecoveryDetails() {
             style={[styles.factor, { borderTopColor: f.color }]}
           >
             <View style={styles.factorTop}>
-              <Text style={styles.factorEmoji}>{f.emoji}</Text>
+              <Icon name={f.icon} size={28} color={f.color} style={{ marginTop: 2 }} />
               <View style={styles.factorText}>
                 <Text style={styles.factorTitle}>{f.title}</Text>
                 <Text style={styles.factorBody}>{f.text}</Text>
@@ -170,12 +170,10 @@ export default function RecoveryDetails() {
 
         {/* Disclaimer */}
         <View style={styles.note}>
-          <Ionicons
-            name="information-circle-outline"
+          <Icon name="info"
             size={20}
             color={C.blue}
-            style={styles.noteIcon}
-          />
+            style={styles.noteIcon} />
           <Text style={styles.noteText}>
             This score provides recovery intelligence and does not guarantee the
             current location of a vehicle. All information is based on
@@ -409,4 +407,3 @@ const styles = StyleSheet.create({
     color: C.text,
   },
 });
-

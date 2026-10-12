@@ -11,7 +11,7 @@ import {
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
-import { Ionicons } from '@expo/vector-icons';
+import Icon from '../../components/common/Icon';
 import { useFonts, BebasNeue_400Regular } from '@expo-google-fonts/bebas-neue';
 import { Inter_400Regular, Inter_600SemiBold } from '@expo-google-fonts/inter';
 
@@ -76,7 +76,7 @@ export default function CheckVin() {
             {/* Header */}
             <View style={styles.header}>
               <Pressable style={styles.back} onPress={() => router.back()}>
-                <Ionicons name="chevron-back" size={18} color={C.muted} />
+                <Icon name="chevronLeft" size={18} color={C.muted} />
                 <Text style={styles.backText}>Back</Text>
               </Pressable>
               <Text style={styles.title}>CHECK BEFORE</Text>
@@ -118,11 +118,11 @@ export default function CheckVin() {
                 onPress={() => router.push('/(official)/vin-scanner')}
               >
                 <View style={styles.scanIcon}>
-                  <Ionicons name="scan-outline" size={32} color={C.red} />
+                  <Icon name="scan" size={32} color={C.red} />
                 </View>
                 <View style={styles.scanText}>
                   <View style={styles.scanTitleRow}>
-                    <Text style={styles.scanEmoji}>📷</Text>
+                    <Icon name="camera" size={18} color={C.red} />
                     <Text style={styles.scanTitle}>SCAN VIN</Text>
                   </View>
                   <Text style={styles.scanSub}>Use camera to scan VIN plate</Text>
@@ -131,7 +131,7 @@ export default function CheckVin() {
 
               {/* Info note */}
               <View style={styles.note}>
-                <Ionicons name="shield-checkmark-outline" size={22} color={C.green} />
+                <Icon name="shieldCheck" size={22} color={C.green} />
                 <Text style={styles.noteText}>
                   VIN information is checked securely against national records.
                 </Text>
@@ -305,4 +305,3 @@ const styles = StyleSheet.create({
     color: C.text,
   },
 });
-

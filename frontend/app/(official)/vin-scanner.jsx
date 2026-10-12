@@ -11,7 +11,7 @@ import {
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { CameraView, useCameraPermissions } from 'expo-camera';
 import { useRouter } from 'expo-router';
-import { Ionicons } from '@expo/vector-icons';
+import Icon from '../../components/common/Icon';
 import { useFonts, BebasNeue_400Regular } from '@expo-google-fonts/bebas-neue';
 import { Inter_400Regular, Inter_600SemiBold } from '@expo-google-fonts/inter';
 
@@ -105,7 +105,7 @@ export default function VinScanner() {
   if (!permission.granted) {
     return (
       <SafeAreaView style={[styles.safe, styles.center]}>
-        <Ionicons name="camera-outline" size={48} color={C.red} />
+        <Icon name="camera" size={48} color={C.red} />
         <Text style={styles.permTitle}>CAMERA ACCESS NEEDED</Text>
         <Text style={styles.permText}>
           VINWatch needs your camera to scan the VIN barcode on a vehicle.
@@ -140,15 +140,13 @@ export default function VinScanner() {
         {/* Top bar */}
         <View style={styles.topBar}>
           <Pressable style={styles.circleBtn} onPress={goBack}>
-            <Ionicons name="chevron-back" size={22} color={C.text} />
+            <Icon name="chevronLeft" size={22} color={C.text} />
           </Pressable>
           <Text style={styles.title}>VIN SCANNER</Text>
           <Pressable style={styles.circleBtn} onPress={() => setTorch((t) => !t)}>
-            <Ionicons
-              name={torch ? 'flash' : 'flash-outline'}
+            <Icon name="zap"
               size={20}
-              color={C.orange}
-            />
+              color={torch ? '#FFFFFF' : C.orange} />
           </Pressable>
         </View>
 
@@ -175,7 +173,7 @@ export default function VinScanner() {
           <Text style={styles.hint}>{hint}</Text>
 
           <Pressable style={styles.manualBtn} onPress={goBack}>
-            <Ionicons name="keypad-outline" size={18} color={C.text} />
+            <Icon name="keyboard" size={18} color={C.text} />
             <Text style={styles.manualText}>ENTER MANUALLY</Text>
           </Pressable>
         </View>

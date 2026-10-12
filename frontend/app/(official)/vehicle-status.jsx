@@ -1,7 +1,7 @@
 import { ScrollView, View, Text, Pressable, StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
-import { Ionicons } from '@expo/vector-icons';
+import Icon from '../../components/common/Icon';
 import { useFonts, BebasNeue_400Regular } from '@expo-google-fonts/bebas-neue';
 import { Inter_400Regular, Inter_600SemiBold } from '@expo-google-fonts/inter';
 
@@ -71,7 +71,7 @@ export default function VehicleStatus() {
         {/* Header */}
         <View style={styles.header}>
           <Pressable style={styles.back} onPress={() => router.back()}>
-            <Ionicons name="chevron-back" size={18} color={C.muted} />
+            <Icon name="chevronLeft" size={18} color={C.muted} />
             <Text style={styles.backText}>Back</Text>
           </Pressable>
           <Text style={styles.title}>
@@ -119,12 +119,10 @@ export default function VehicleStatus() {
 
           {/* Note */}
           <View style={styles.note}>
-            <Ionicons
-              name="information-circle-outline"
+            <Icon name="info"
               size={20}
               color={C.blue}
-              style={styles.noteIcon}
-            />
+              style={styles.noteIcon} />
             <Text style={styles.noteText}>
               Status is determined by reports verified in the national database.
               Community reports may be pending verification.
@@ -237,4 +235,3 @@ const styles = StyleSheet.create({
     color: C.muted,
   },
 });
-

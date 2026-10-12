@@ -1,7 +1,7 @@
 import { ScrollView, View, Text, Pressable, Alert, StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
-import { Ionicons } from '@expo/vector-icons';
+import Icon from '../../components/common/Icon';
 import { useFonts, BebasNeue_400Regular } from '@expo-google-fonts/bebas-neue';
 import { Inter_400Regular, Inter_600SemiBold } from '@expo-google-fonts/inter';
 
@@ -21,7 +21,7 @@ const C = {
 // ---- Placeholder data: replace with the official's real account settings ----
 const SECTIONS = [
   {
-    emoji: '🔐',
+    icon: 'lock',
     title: 'ACCOUNT SECURITY',
     items: [
       { title: 'Change Password', sub: 'Update your account password' },
@@ -33,7 +33,7 @@ const SECTIONS = [
     ],
   },
   {
-    emoji: '🛡️',
+    icon: 'shield',
     title: 'DATA & PRIVACY',
     items: [
       {
@@ -46,7 +46,7 @@ const SECTIONS = [
     ],
   },
   {
-    emoji: '📝',
+    icon: 'fileText',
     title: 'ACCOUNT ACTIVITY',
     items: [
       { title: 'Login Activity', sub: 'Last login: Today at 08:12' },
@@ -76,7 +76,7 @@ export default function Security() {
         {/* Header */}
         <View style={styles.header}>
           <Pressable style={styles.back} onPress={() => router.back()}>
-            <Ionicons name="chevron-back" size={18} color={C.muted} />
+            <Icon name="chevronLeft" size={18} color={C.muted} />
             <Text style={styles.backText}>Back</Text>
           </Pressable>
           <Text style={styles.title}>
@@ -88,7 +88,7 @@ export default function Security() {
           {SECTIONS.map((section) => (
             <View key={section.title} style={styles.section}>
               <View style={styles.sectionHead}>
-                <Text style={styles.sectionEmoji}>{section.emoji}</Text>
+                <Icon name={section.icon} size={14} color={C.muted} />
                 <Text style={styles.sectionTitle}>{section.title}</Text>
               </View>
 
@@ -124,7 +124,7 @@ export default function Security() {
                         </Text>
                       </View>
                     )}
-                    <Ionicons name="chevron-forward" size={18} color={C.faint} />
+                    <Icon name="chevronRight" size={18} color={C.faint} />
                   </Pressable>
                 ))}
               </View>
@@ -133,7 +133,7 @@ export default function Security() {
 
           {/* POPIA note */}
           <View style={styles.note}>
-            <Ionicons name="shield-outline" size={22} color={C.red} />
+            <Icon name="shield" size={22} color={C.red} />
             <Text style={styles.noteText}>
               VINWatch SA is POPIA compliant. Your data is protected and only
               used for the purposes stated in our Privacy Policy.
@@ -248,4 +248,3 @@ const styles = StyleSheet.create({
     color: C.muted,
   },
 });
-
