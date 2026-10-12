@@ -6,7 +6,8 @@ import { useRouter } from 'expo-router';
 // Add a line here whenever a new number turns up.
 const SCREEN_ROUTES = {
   1: '/(user)/home',
-  2: '/(user)/vin/check',
+  2: '/(user)/vin/scanner',
+  check: '/(user)/vin/check',
   3: '/(user)/sightings/report-sighting',
   4: '/(user)/alerts',
   6: '/(user)/vehicles',
